@@ -64,16 +64,16 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1
+CMAKE_SOURCE_DIR = /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Program1.dir/all
+all: CMakeFiles/homework2.dir/all
 
 .PHONY : all
 
@@ -83,36 +83,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Program1.dir/clean
+clean: CMakeFiles/homework2.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Program1.dir
+# Target rules for target CMakeFiles/homework2.dir
 
 # All Build rule for target.
-CMakeFiles/Program1.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Program1.dir/build.make CMakeFiles/Program1.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Program1.dir/build.make CMakeFiles/Program1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target Program1"
-.PHONY : CMakeFiles/Program1.dir/all
+CMakeFiles/homework2.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework2.dir/build.make CMakeFiles/homework2.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework2.dir/build.make CMakeFiles/homework2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target homework2"
+.PHONY : CMakeFiles/homework2.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Program1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1/cmake-build-debug/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Program1.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/Program1.dir/rule
+CMakeFiles/homework2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/homework2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/homework2.dir/rule
 
 # Convenience name for target.
-Program1: CMakeFiles/Program1.dir/rule
+homework2: CMakeFiles/homework2.dir/rule
 
-.PHONY : Program1
+.PHONY : homework2
 
 # clean rule for target.
-CMakeFiles/Program1.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Program1.dir/build.make CMakeFiles/Program1.dir/clean
-.PHONY : CMakeFiles/Program1.dir/clean
+CMakeFiles/homework2.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework2.dir/build.make CMakeFiles/homework2.dir/clean
+.PHONY : CMakeFiles/homework2.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -68,10 +68,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1
+CMAKE_SOURCE_DIR = /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1/cmake-build-debug/CMakeFiles /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2/cmake-build-debug/CMakeFiles /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Homework2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -131,44 +131,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Program1
+# Target rules for targets named homework2
 
 # Build rule for target.
-Program1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Program1
-.PHONY : Program1
+homework2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework2
+.PHONY : homework2
 
 # fast build rule for target.
-Program1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Program1.dir/build.make CMakeFiles/Program1.dir/build
-.PHONY : Program1/fast
+homework2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework2.dir/build.make CMakeFiles/homework2.dir/build
+.PHONY : homework2/fast
 
-Program1.o: Program1.cpp.o
+homework2.o: homework2.cpp.o
 
-.PHONY : Program1.o
+.PHONY : homework2.o
 
 # target to build an object file
-Program1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Program1.dir/build.make CMakeFiles/Program1.dir/Program1.cpp.o
-.PHONY : Program1.cpp.o
+homework2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework2.dir/build.make CMakeFiles/homework2.dir/homework2.cpp.o
+.PHONY : homework2.cpp.o
 
-Program1.i: Program1.cpp.i
+homework2.i: homework2.cpp.i
 
-.PHONY : Program1.i
+.PHONY : homework2.i
 
 # target to preprocess a source file
-Program1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Program1.dir/build.make CMakeFiles/Program1.dir/Program1.cpp.i
-.PHONY : Program1.cpp.i
+homework2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework2.dir/build.make CMakeFiles/homework2.dir/homework2.cpp.i
+.PHONY : homework2.cpp.i
 
-Program1.s: Program1.cpp.s
+homework2.s: homework2.cpp.s
 
-.PHONY : Program1.s
+.PHONY : homework2.s
 
 # target to generate assembly for a file
-Program1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Program1.dir/build.make CMakeFiles/Program1.dir/Program1.cpp.s
-.PHONY : Program1.cpp.s
+homework2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework2.dir/build.make CMakeFiles/homework2.dir/homework2.cpp.s
+.PHONY : homework2.cpp.s
 
 # Help Target
 help:
@@ -178,10 +178,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Program1"
-	@echo "... Program1.o"
-	@echo "... Program1.i"
-	@echo "... Program1.s"
+	@echo "... homework2"
+	@echo "... homework2.o"
+	@echo "... homework2.i"
+	@echo "... homework2.s"
 .PHONY : help
 
 
