@@ -18,27 +18,26 @@ int main() {
     const double FOUR_THIRDS = 4.0 / 3.0;
 
     double totalVolume = 0;
-    double radius = 0;
+    double radius;
 
-    double totalNumberOfSpheres = 0;
+    double totalNumberOfSpheres;
 
     cout << HOW_MANY_SPHERES << endl;
-
-    while (totalNumberOfSpheres < 1) {
+    do {
         cin >> totalNumberOfSpheres;
         if (totalNumberOfSpheres < 1) {
             cout << WARNING_ENTER_VALID_SPHERE_NUMBER << endl;
         }
-    }
+    } while (totalNumberOfSpheres < 1);
 
     for (int currentSphere = 1; currentSphere <= totalNumberOfSpheres; currentSphere++) {
         cout << ENTER_RADIUS_VALUE << currentSphere << endl;
-        while (radius <= 0) {
+        do {
             cin >> radius;
             if (radius <= 0) {
                 cout << WARNING_ENTER_VALID_RADIUS_VALUE << endl;
             }
-        }
+        } while (radius <= 0);
         totalVolume += FOUR_THIRDS * PI * pow(radius, 3);
         radius = 0;
     }
