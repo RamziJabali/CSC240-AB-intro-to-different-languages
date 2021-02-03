@@ -1,3 +1,9 @@
+//@Author: Ramzi Eljabali, Date: 01/27/2021
+//@Purpose: Asks user for the number of spheres
+//they want to find the total volume for, then
+//it asks for the radius of each sphere and
+//finally displays the total volume of all spheres.
+
 #include <iostream>
 #include <math.h>
 
@@ -10,7 +16,8 @@ int main() {
             "Enter sphere number greater than or equal to 1 please.";
     const string WARNING_ENTER_VALID_RADIUS_VALUE =
             "Enter radius value greater than 0 please.";
-    const string ENTER_RADIUS_VALUE = "Please Enter the value of the radius #";
+    const string ENTER_RADIUS_VALUE = "Please Enter the value of the "
+                                      "radius(inches) #";
     const string TOTAL_VOLUME = "Your total total Volume is: ";
     const string VOLUME_UNITS = " CUBIC INCHES";
 
