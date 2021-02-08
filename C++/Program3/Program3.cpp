@@ -151,8 +151,7 @@ int getTotalNumberOfPigs(int pigCapacity, int initialPopulation, int timeline,
     double pOld = initialPopulation;
     for (int time = 0; time <= timeline; time++) {
         if (doesUserWantTable == 1) {
-            printf("%-11d%f\n", time, pOld);//11
-            //printf("%19f\n", pOld);//11
+            printf("%-11d%f\n", time, pOld);
         }
         bOld = pOld / pigCapacity;
         bNew = bOld + growthRate * bOld * (1 - bOld);
@@ -166,7 +165,7 @@ int checkUserInputInt(int data, int partOfProgram) {
     switch (partOfProgram) {
         case 0:
         case 1:
-            if (data <= 1) {
+            if (data < 1) {
                 return 0;
             }
             break;
