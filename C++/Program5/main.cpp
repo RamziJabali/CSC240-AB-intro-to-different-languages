@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -10,7 +11,8 @@ double optionTwoRepresentative();
 void optionThreeRepresentative();
 
 //Engineers for the computations
-void optionOneEngineer();
+void optionOneEngineer(double x1, double x2, double y1, double y2,
+                       double *distance, double *horizontalAngle);
 
 void optionTwoEngineer();
 
@@ -20,6 +22,8 @@ void OptionThreeEngineer();
 void getXAndYCoordinates(double &xCoordinate, double &yCoordinate);
 
 //My Functions
+double PI();
+
 void printIntroductionDialogue();
 
 void mainMenu();
@@ -54,26 +58,63 @@ void mainMenu() {
     } while (userChoice != 4);
 }
 
+
 void getXAndYCoordinates(double &xCoordinate, double &yCoordinate) {
-    cout << "Enter X Coordinates " << endl;
+    cout << "Enter X Coordinates in Feet " << endl;
     cin >> xCoordinate;
-    cout << "Enter Y Coordinates " << endl;
+    cout << "Enter Y Coordinates in Feet " << endl;
     cin >> yCoordinate;
+
 }
 
 void optionOneRepresentative() {
-    cout << "I am at one\n";
-    double x, y;
-    getXAndYCoordinates(x, y);
+    double x1, y1, x2, y2;
+    double distance = 0;
+    double horizontalAngle = 0;
 
+    getXAndYCoordinates(x1, y1);//first point
+    getXAndYCoordinates(x2, y2);//second point
+    optionOneEngineer(x1, x2, y1, y2, &distance, &horizontalAngle);
+
+    cout << "Distance between point (" << x1 << "," << y1 << ") and " <<
+         "point (" << x2 << "," << y2 << "): " << distance << " Feet" << endl;
+
+    cout << "Horizontal Angle in Degrees from point (" << x1 << "," << y1 << ") to " <<
+         "point (" << x2 << "," << y2 << "): " << horizontalAngle << "°" << endl << endl;
+}
+
+void optionOneEngineer(double x1, double x2, double y1, double y2,
+                       double *distance, double *horizontalAngle) {
+    int power = 2;
+
+    double dx = (x2 - x1); //Difference between X coordinates
+    double dy = (y2 - y1); //Difference between Y coordinates
+    double angleInRadians;
+
+    *distance = sqrt(pow(dx, power) + pow(dy, power));
+
+    if (dx > 0) {
+        angleInRadians = atan(dy / dx);
+    } else if (dx < 0) {
+        angleInRadians = atan(dy / dx) + PI();
+    } else if (dx == 0 && dy >= 0) {
+        angleInRadians = PI() / 2;
+    } else {
+        angleInRadians = -PI() / 2;
+    }
+    *horizontalAngle = angleInRadians * (180 / PI());
 }
 
 double optionTwoRepresentative() {
-    cout << "I am at two\n";
+    
 }
 
 void optionThreeRepresentative() {
     cout << "I am at three\n";
+}
+
+double PI() {
+    return 3.14159265359;
 }
 
 int getUserMenuChoice() {
