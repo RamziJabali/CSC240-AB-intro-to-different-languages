@@ -16,7 +16,8 @@ void optionOneEngineer(double x1, double x2, double y1, double y2,
 
 double optionTwoEngineer(double elevationAngle, double velocity);
 
-void OptionThreeEngineer();
+void optionThreeEngineer(double x1, double y1, double &x2, double &y2,
+                         double horizontalAngle, double distance);
 
 //Extra Required Function
 void getXAndYCoordinates(double &xCoordinate, double &yCoordinate);
@@ -25,6 +26,10 @@ void getXAndYCoordinates(double &xCoordinate, double &yCoordinate);
 double getElevationAngle();
 
 double getVelocity();
+
+double getHorizontalAngle();
+
+double getDistance();
 
 double PI();
 
@@ -128,7 +133,44 @@ double optionTwoEngineer(double elevationAngle, double velocity) {
 }
 
 void optionThreeRepresentative() {
-    cout << "I am at three\n";
+    double x1, y1, x2, y2;
+    double horizontalAngle = getHorizontalAngle();
+    double distance = getDistance();
+    getXAndYCoordinates(x1, y1);
+    optionThreeEngineer(x1, y1, x2, y2, horizontalAngle, distance);
+    cout << "Given starting point (" << x1 << "," << y1 << ")" << endl;
+    cout << "and given horizontal angle " << horizontalAngle << "° " << endl
+         << "and given distance " << distance << " feet" << endl
+         << "we get destination point (" << x2 << "," << y2 << ")"
+         << endl << endl;
+}
+
+void optionThreeEngineer(double x1, double y1, double &x2, double &y2,
+                         double horizontalAngle, double distance) {
+    double horizontalAngleInRads = horizontalAngle * PI() / 180;
+    double dx = distance * cos(horizontalAngleInRads);
+    double dy = distance * sin(horizontalAngleInRads);
+    x2 = x1 + dx;
+    y2 = y1 + dy;
+}
+
+double getDistance() {
+    double distance;
+    do {
+        cout << "Enter a distance in FEET GREATER than 0 NOT INCLUSIVE:" << endl;
+        cin >> distance;
+    } while (distance <= 0);
+    return distance;
+}
+
+double getHorizontalAngle() {
+    double horizontalAngle;
+    do {
+        cout << "Enter a horizontal angle IN DEGREES(°) "
+                "\nbetween 0° to 360° INCLUSIVE:" << endl;
+        cin >> horizontalAngle;
+    } while (horizontalAngle < 0 || horizontalAngle > 360);
+    return horizontalAngle;
 }
 
 double getVelocity() {
