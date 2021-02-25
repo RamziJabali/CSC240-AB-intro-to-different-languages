@@ -6,7 +6,7 @@ using namespace std;
 //UserInput
 void optionOneRepresentative();
 
-double optionTwoRepresentative();
+void optionTwoRepresentative();
 
 void optionThreeRepresentative();
 
@@ -14,7 +14,7 @@ void optionThreeRepresentative();
 void optionOneEngineer(double x1, double x2, double y1, double y2,
                        double *distance, double *horizontalAngle);
 
-void optionTwoEngineer();
+double optionTwoEngineer(double elevationAngle, double velocity);
 
 void OptionThreeEngineer();
 
@@ -22,13 +22,25 @@ void OptionThreeEngineer();
 void getXAndYCoordinates(double &xCoordinate, double &yCoordinate);
 
 //My Functions
+double getElevationAngle();
+
+double getVelocity();
+
 double PI();
+
+double gravitationalVelocity();
+
+int getUserMenuChoice();
+
+int feetPerMile();
+
+int secondsPerHour();
+
+int two();
 
 void printIntroductionDialogue();
 
 void mainMenu();
-
-int getUserMenuChoice();
 
 void quit();
 
@@ -64,14 +76,12 @@ void getXAndYCoordinates(double &xCoordinate, double &yCoordinate) {
     cin >> xCoordinate;
     cout << "Enter Y Coordinates in Feet " << endl;
     cin >> yCoordinate;
-
 }
 
 void optionOneRepresentative() {
     double x1, y1, x2, y2;
     double distance = 0;
     double horizontalAngle = 0;
-
     getXAndYCoordinates(x1, y1);//first point
     getXAndYCoordinates(x2, y2);//second point
     optionOneEngineer(x1, x2, y1, y2, &distance, &horizontalAngle);
@@ -85,13 +95,11 @@ void optionOneRepresentative() {
 
 void optionOneEngineer(double x1, double x2, double y1, double y2,
                        double *distance, double *horizontalAngle) {
-    int power = 2;
-
     double dx = (x2 - x1); //Difference between X coordinates
     double dy = (y2 - y1); //Difference between Y coordinates
     double angleInRadians;
 
-    *distance = sqrt(pow(dx, power) + pow(dy, power));
+    *distance = sqrt(pow(dx, two()) + pow(dy, two()));
 
     if (dx > 0) {
         angleInRadians = atan(dy / dx);
@@ -105,12 +113,45 @@ void optionOneEngineer(double x1, double x2, double y1, double y2,
     *horizontalAngle = angleInRadians * (180 / PI());
 }
 
-double optionTwoRepresentative() {
-    
+void optionTwoRepresentative() {
+    cout << "Your horizontal distance is " <<
+         optionTwoEngineer(getElevationAngle(), getVelocity()) << "Feet"
+         << endl << endl;
+}
+
+double optionTwoEngineer(double elevationAngle, double velocity) {
+    double elevationAngleInRads = elevationAngle * (PI() / 180);
+    double initialVelocity = velocity * feetPerMile() / secondsPerHour();
+    return pow(initialVelocity, two()) * sin(two() *
+                                             elevationAngleInRads) /
+           gravitationalVelocity();
 }
 
 void optionThreeRepresentative() {
     cout << "I am at three\n";
+}
+
+double getVelocity() {
+    double velocity;
+    do {
+        cout << "Enter a velocity in MPH GREATER than 0 NOT INCLUSIVE:" << endl;
+        cin >> velocity;
+    } while (velocity <= 0);
+    return velocity;
+}
+
+double getElevationAngle() {
+    double angleOfElevation;
+    do {
+        cout << "Enter an elevation angle IN DEGREES(°) "
+                "\nbetween 0° to 90° NOT inclusive:" << endl;
+        cin >> angleOfElevation;
+    } while (angleOfElevation <= 0 || angleOfElevation >= 90);
+    return angleOfElevation;
+}
+
+double gravitationalVelocity() {
+    return 32.172;
 }
 
 double PI() {
@@ -125,6 +166,18 @@ int getUserMenuChoice() {
         cin >> userMenuChoice;
     } while (userMenuChoice < 1 || userMenuChoice > 4);
     return userMenuChoice;
+}
+
+int feetPerMile() {
+    return 5280;
+}
+
+int secondsPerHour() {
+    return 3600;
+}
+
+int two() {
+    return 2;
 }
 
 void printIntroductionDialogue() {
