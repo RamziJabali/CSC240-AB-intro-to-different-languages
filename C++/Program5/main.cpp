@@ -84,6 +84,7 @@ void getXAndYCoordinates(double &xCoordinate, double &yCoordinate) {
 }
 
 void optionOneRepresentative() {
+    cout << "OPTION 1:" << endl;
     double x1, y1, x2, y2;
     double distance = 0;
     double horizontalAngle = 0;
@@ -119,8 +120,11 @@ void optionOneEngineer(double x1, double x2, double y1, double y2,
 }
 
 void optionTwoRepresentative() {
+    cout << "OPTION 2:" << endl;
+    double angleOfElevation = getElevationAngle();
+    double velocity = getVelocity();
     cout << "Your horizontal distance is " <<
-         optionTwoEngineer(getElevationAngle(), getVelocity()) << "Feet"
+         optionTwoEngineer(angleOfElevation, velocity) << "Feet"
          << endl << endl;
 }
 
@@ -133,6 +137,7 @@ double optionTwoEngineer(double elevationAngle, double velocity) {
 }
 
 void optionThreeRepresentative() {
+    cout << "OPTION 3:" << endl;
     double x1, y1, x2, y2;
     double horizontalAngle = getHorizontalAngle();
     double distance = getDistance();
