@@ -31,6 +31,15 @@ double getHorizontalAngle();
 
 double getDistance();
 
+double getUserVerticalAngleIncrement();
+
+double getUserVelocityIncrement();
+
+int doesUserWantToIncrementVelocityOrVerticalAngle();
+
+void createAndDisplayTable(double incrementAmount, double verticalAngle,
+                           double velocity, int velocityOrAngle);//TODO: Figure out the parameter list
+
 double PI();
 
 double gravitationalVelocity();
@@ -60,10 +69,10 @@ void mainMenu() {
         userChoice = getUserMenuChoice();
         switch (userChoice) {
             case 1:
-                optionOneRepresentative();
+                optionOneRepresentative();//stays the same
                 break;
             case 2:
-                optionTwoRepresentative();
+                optionTwoRepresentative();//
                 break;
             case 3:
                 optionThreeRepresentative();
@@ -118,14 +127,25 @@ void optionOneEngineer(double x1, double x2, double y1, double y2,
     }
     *horizontalAngle = angleInRadians * (180 / PI());
 }
+//TODO: Ask for initial values of vertical angle and velocity (DONE)
+//TODO: Make function to accept the increment increase(DONE)
+//TODO: Ask how many rows they want in the table(DONE)
+//TODO: Ask by how much they want to increase by for each of the rows(DONE)
+//TODO: Make a function to print the table(DONE)
+//TODO: Make a function to choose the desired increment variable for the table(DONE)
 
 void optionTwoRepresentative() {
     cout << "OPTION 2:" << endl;
     double angleOfElevation = getElevationAngle();
     double velocity = getVelocity();
-    cout << "Your horizontal distance is " <<
-         optionTwoEngineer(angleOfElevation, velocity) << "Feet"
-         << endl << endl;
+    int velocityOrVerticalAngle = doesUserWantToIncrementVelocityOrVerticalAngle();
+    if (velocityOrVerticalAngle == 1) {
+        createAndDisplayTable(getUserVelocityIncrement(),
+                              angleOfElevation, velocity, velocityOrVerticalAngle);
+    } else {
+        createAndDisplayTable(getUserVerticalAngleIncrement(),
+                              angleOfElevation, velocity, velocityOrVerticalAngle);
+    }
 }
 
 double optionTwoEngineer(double elevationAngle, double velocity) {
@@ -157,6 +177,69 @@ void optionThreeEngineer(double x1, double y1, double &x2, double &y2,
     double dy = distance * sin(horizontalAngleInRads);
     x2 = x1 + dx;
     y2 = y1 + dy;
+}
+
+int doesUserWantToIncrementVelocityOrVerticalAngle() {
+    int userInput;
+    do {
+        cout << "Would you like to increment \n"
+                "(1) For the Velocity \n"
+                "(2) For the Vertical angle \n" << endl;
+        cin >> userInput;
+    } while (userInput != 1 && userInput != 2);
+    return userInput;
+}
+
+double getUserVerticalAngleIncrement() {
+    double incrementAmount;
+    do {
+        cout << "Please Enter a number in degrees you want to increment the\n"
+                "vertical angle by:" << endl;
+        cin >> incrementAmount;
+    } while (incrementAmount <= 0);
+    return incrementAmount;
+}
+
+double getUserVelocityIncrement() {
+    double incrementAmount;
+    do {
+        cout << "Please Enter a number in FEET you want to increment the\n"
+                "velocity by:" << endl;
+        cin >> incrementAmount;
+    } while (incrementAmount <= 0);
+    return incrementAmount;
+}
+
+void createAndDisplayTable(double incrementAmount, double verticalAngle,
+                           double velocity, int velocityOrAngle) {
+    int rowAmount;
+
+    do {
+        cout << "How many rows would you like to see\n"
+                "If you want only 1 row, type \"0\"\n"
+                "For more, type your desired number of rows" << endl;
+        cin >> rowAmount;
+    } while (rowAmount < 0);
+
+    if (velocityOrAngle == 1) {
+        cout << "Velocity       Distance" << endl;
+        cout << "(feet)         (feet)" << endl;
+    } else {
+        cout << "Angle       Distance" << endl;
+        cout << "(degs)      (feet)" << endl;
+    }
+
+    for (int i = 0; i < rowAmount; ++i) {
+        if (velocityOrAngle == 1) {
+            cout << velocity << "            " <<
+                 optionTwoEngineer(verticalAngle, velocity) << endl;
+            velocity += incrementAmount;
+        } else {
+            cout << verticalAngle << "          " <<
+                 optionTwoEngineer(verticalAngle, velocity) << endl;
+            verticalAngle += incrementAmount;
+        }
+    }
 }
 
 double getDistance() {
