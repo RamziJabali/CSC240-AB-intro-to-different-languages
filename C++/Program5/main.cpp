@@ -32,9 +32,14 @@ void optionThreeEngineer(double x1, double y1, double &x2, double &y2,
 
 int getRandomNumber();
 
-void optionThreeCheatMode();
+void optionThreeCheatMode(double x1, double x2, double y1, double y2);
 
 //My Functions
+char doesUserWantToQuit();
+
+int targetPracticeCalculations(double x1, double x2, double y1, double y2,
+                               double horizontalAngle, double verticalAngle,
+                               double velocity, int radius);
 
 void getXAndYCoordinates(double &xCoordinate, double &yCoordinate);
 
@@ -49,6 +54,14 @@ double getDistance();
 double getUserVerticalAngleIncrement();
 
 double getUserVelocityIncrement();
+
+double getHorizontalAnglePhaseTwo();
+
+double getVerticalAngle();
+
+int doesUserWantOptionThreeInEasyMediumOrHardMode();
+
+int getRadiusFromGameMode(int gameMode);
 
 int doesUserWantCheatMode();
 
@@ -205,33 +218,95 @@ double optionTwoEngineer(double elevationAngle, double velocity) {
            gravitationalVelocity();
 }
 
-//TODO: EASY MODE 100 FOOT RADIUS
-//TODO: MEDIUM MODE 25 FOOT RADIUS
-//TODO: HARD MODE 5 FOOT RADIUS
-//TODO: MAKE RANDOM NUMBER GENERATOR 0 - 5000(DONE)
-//TODO
-//
 void optionThreeInputOutput() {
     cout << "OPTION 3: TARGET PRACTICE" << endl;
     double x1, y1, x2, y2;
-    double horizontalAngle = getHorizontalAngle();//make a separate function for getting
-    // the horizontal angle 0 -> 180
-    double distance = getDistance();
+    double horizontalAngle, verticalAngle, velocity, distance;
+    double tempHorizontalAngle, destinationX, destinationY;
     x1 = 2500;
     y1 = 0;
-    x2 = getRandomNumber();
-    y2 = getRandomNumber();
-    //TODO:ask the user to enter the direction of the barrel (horizontal angle: 0 to 180 degrees)
-    //TODO:ask the user to enter the elevation of the barrel (vertical angle: 0 to 90 degrees)
-    //TODO:ask the user to enter the the velocity (mph).
-    if (doesUserWantCheatMode()) {
+    int numOfShots = 0, numOfHits = 0;
+    do {
+        x2 = getRandomNumber();
+        y2 = getRandomNumber();
 
-    } else {
+        int radius = getRadiusFromGameMode
+                (doesUserWantOptionThreeInEasyMediumOrHardMode());
 
-    }
+        if (doesUserWantCheatMode() == 1) {
+            optionThreeCheatMode(x1, x2, y1, y2);
+        }
 
+        cout << "You are at coordinate (" << x1 << "," << y1 << ")\n";
+        cout << "Your target is at coordinate (" << x2 << "," << y2 << ")\n\n";
+
+        horizontalAngle = getHorizontalAnglePhaseTwo();
+        verticalAngle = getVerticalAngle();
+        velocity = getVelocity();
+        int didUserHitTarget = targetPracticeCalculations(x1, x2, y1, y2,
+                                                          horizontalAngle,
+                                                          verticalAngle,
+                                                          velocity, radius);
+        if (didUserHitTarget == 1) {
+            cout << "BOOM! you hit the target\n" << endl;
+            numOfShots++;
+            numOfHits++;
+        } else {
+            optionThreeEngineer(x1, y1, destinationX, destinationY, horizontalAngle,
+                                distance);
+            optionOneEngineer(destinationX, x2, destinationY, y2,
+                              &distance, &tempHorizontalAngle);
+            cout << "You missed your shot\n"
+                    "You were " << distance << " Feet away from target\n" << endl;
+            numOfShots++;
+        }
+    } while (doesUserWantToQuit() != 'q');
+    cout << "You shot " << numOfShots << " and hit " <<
+         numOfHits << " of them!\n" << endl;
 }
 
+int targetPracticeCalculations(double x1, double x2, double y1, double y2,
+                               double horizontalAngle, double verticalAngle,
+                               double velocity, int radius) {
+    double tempHorizontalAngle;
+    double distance;
+    optionThreeEngineer(x1, y1, x2, y2, horizontalAngle,
+                        optionTwoEngineer(verticalAngle, velocity));
+    optionOneEngineer(x2, x1, y2, y1, &distance, &tempHorizontalAngle);
+    if (distance <= radius) {
+        return 1;
+    }
+    return 0;
+}
+
+double getHorizontalAnglePhaseTwo() {
+    double horizontalAngle;
+    do {
+        cout << "Enter the direction of the barrel (horizontal angle: " <<
+             "0 to 180 degrees) inclusive" << endl;
+        cin >> horizontalAngle;
+    } while (horizontalAngle <= -1 || horizontalAngle >= 181);
+    return horizontalAngle;
+}
+
+char doesUserWantToQuit() {
+    char wantToQuit;
+    cout << "Would you like to take another shot or\n"
+            "would you like to go back to the MAINMENU\n"
+            "Enter 'q' to quit or any other character to play again\n" << endl;
+    cin >> wantToQuit;
+    return wantToQuit;
+}
+
+double getVerticalAngle() {
+    double verticalAngle;
+    do {
+        cout << "enter the elevation of the barrel (vertical angle: "
+                "0 to 90 degrees)" << endl;
+        cin >> verticalAngle;
+    } while (verticalAngle < 0 || verticalAngle > 90);
+    return verticalAngle;
+}
 
 void optionThreeEngineer(double x1, double y1, double &x2, double &y2,
                          double horizontalAngle, double distance) {
@@ -242,10 +317,19 @@ void optionThreeEngineer(double x1, double y1, double &x2, double &y2,
     y2 = y1 + dy;
 }
 
+int getRadiusFromGameMode(int gameMode) {
+    if (gameMode == 1) {
+        return 100;
+    } else if (gameMode == 2) {
+        return 25;
+    }
+    return 5;
+}
+
 int doesUserWantCheatMode() {
     int userChoice;
     do {
-        cout << "Do you want to play in cheat mode?"
+        cout << "Do you want to play in cheat mode?\n"
                 "(1) Yes\n"
                 "(2) No" << endl;
         cin >> userChoice;
@@ -253,6 +337,26 @@ int doesUserWantCheatMode() {
     return userChoice;
 }
 
+int doesUserWantOptionThreeInEasyMediumOrHardMode() {
+    int mode;
+    do {
+        cout << "Enter:\n"
+                "(1) for EASY mode RADIUS 100 Feet\n"
+                "(2) for MEDIUM mode RADIUS 25 Feet\n"
+                "(3) for HARD mode RADIUS 5 Feet" << endl;
+        cin >> mode;
+    } while (mode != 1 && mode != 2 && mode != 3);
+    return mode;
+}
+
+void optionThreeCheatMode(double x1, double x2, double y1, double y2) {
+    double distance, horizontalAngle;
+    optionOneEngineer(x1, x2, y1, y2, &distance, &horizontalAngle);
+    cout << "Distance between the cannon and the target is: " << distance <<
+         "Feet" << endl;
+    cout << "Horizontal angle between the cannon and the target: " <<
+         horizontalAngle << "°" << endl;
+}
 
 int getRandomNumber() {
     return rand() % 5001;
