@@ -5,7 +5,7 @@
 using namespace std;
 
 
-//Phase 1
+//Parts of Phase 1
 void optionTwoRepresentative();
 
 void optionThreeRepresentative();
