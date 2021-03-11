@@ -14,12 +14,13 @@
 ;2
 (define (radioFrequency frequencyMHz)
   (cond
-    [(and (< frequencyMHz .03) (>= frequencyMHz .01))  "Very Low Frequency(VLF)"]
-    [(and (< frequencyMHz .3) (>= frequencyMHz .03))  "Low Frequency(LF)"]
-    [(and (< frequencyMHz 3) (>= frequencyMHz .3))  "Medium Frequency(MF)"]
-    [(and (< frequencyMHz 30) (>= frequencyMHz 3))  "High Frequency(HF)"]
-    [(and (< frequencyMHz 328.6) (>= frequencyMHz 30))  "Very High Frequency(VHF)"]
-    [(and (< frequencyMHz 2009) (>= frequencyMHz 328.6))  "Ultra High Frequency(VHF)"])
+    ((and (< frequencyMHz .03) (>= frequencyMHz .01))  "Very Low Frequency(VLF)")
+    ((and (< frequencyMHz .3) (>= frequencyMHz .03))  "Low Frequency(LF)")
+    ((and (< frequencyMHz 3) (>= frequencyMHz .3))  "Medium Frequency(MF)")
+    ((and (< frequencyMHz 30) (>= frequencyMHz 3))  "High Frequency(HF)")
+    ((and (< frequencyMHz 328.6) (>= frequencyMHz 30))  "Very High Frequency(VHF)")
+    ("Ultra High Frequency(VHF)"))
+     
   )
 ;3
 (define (totalWeeklyPaycheck hourly numHoursOrCommissions hourlyRate giftCard)
@@ -29,8 +30,8 @@
       (- (* numHoursOrCommissions hourlyRate) giftCard)
       )
       (cond
-        [(< numHoursOrCommissions 500) (* numHoursOrCommissions 0.015)]
-        [(and (< numHoursOrCommissions 1000) (>= numHoursOrCommissions 500)) (- (* numHoursOrCommissions 0.03) giftCard)]
-        [(>= numHoursOrCommissions 1000) (- (* numHoursOrCommissions 0.05) giftCard)])
+        ((< numHoursOrCommissions 500) (- (* numHoursOrCommissions 0.015) giftCard))
+        ((and (< numHoursOrCommissions 1000) (>= numHoursOrCommissions 500)) (- (* numHoursOrCommissions 0.03) giftCard))
+        ((>= numHoursOrCommissions 1000) (- (* numHoursOrCommissions 0.05) giftCard)))
       )
   )
