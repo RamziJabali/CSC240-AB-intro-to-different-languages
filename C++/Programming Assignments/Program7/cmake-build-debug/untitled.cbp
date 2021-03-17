@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug"/>
+				<Option working_dir="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug"/>
+				<Option working_dir="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug"/>
+				<Option working_dir="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Program7">
-				<Option output="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Program7" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug"/>
+				<Option output="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/cmake-build-debug/Program7" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -51,15 +51,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 Program7"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 Program7"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Program7/fast">
-				<Option output="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Program7" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug"/>
+				<Option output="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/cmake-build-debug/Program7" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -71,17 +71,17 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 Program7/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 Program7/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming\ Assignments/Program7/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/main.cpp">
+		<Unit filename="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/main.cpp">
 			<Option target="Program7"/>
 		</Unit>
-		<Unit filename="/Users/ramzijabali/Code/CSC240-Intro-to-different-programming-languages/C++/Program7/CMakeLists.txt">
+		<Unit filename="/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program7/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
