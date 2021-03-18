@@ -8,7 +8,7 @@ void getLine(char line[]);
 
 void initializeLetterCounter(char text[], int letterCounter[]);
 
-void countAndFrequencyOfLine(char text[], int letterCounter[]);
+void letterCountAndFrequencyInText(char *text, int *letterCounter);
 
 char getLowerCaseLetter(char upperCaseLetter);
 
@@ -24,6 +24,10 @@ void printEnterASentence();
 
 void printDoYouWantToQuit();
 
+void printTableHeader();
+
+void printTable(char currentLetter, int letterCount, double letterFrequency);
+
 int main() {
     mainMenu();
     return 0;
@@ -38,7 +42,7 @@ void mainMenu() {
 
         cout << "Your Text:\n" << text << endl;
         initializeLetterCounter(text, letterCounter);
-        countAndFrequencyOfLine(text, letterCounter);
+        letterCountAndFrequencyInText(text, letterCounter);
     } while (doesUserWantToQuit());
 }
 
@@ -53,20 +57,29 @@ int doesUserWantToQuit() {
     return userChoice[0] == 'n' || userChoice[0] == 'N';
 }
 
-void countAndFrequencyOfLine(char text[], int letterCounter[]) {
+void letterCountAndFrequencyInText(char *text, int *letterCounter) {
     int displayCounter = 0;
     int numberOfLetters = getLetterCount(text);
-    cout << "Letter    Count    Frequency\n";
+    printTableHeader();
     for (int i = 0; i < 26; i++) {
         if (displayCounter == 13) {
             cout << "Press Enter to continue display" << endl;
             cin.get();
             displayCounter = 0;
         }
-        cout << getLowerCaseLetter(i + 'a') << "         " << letterCounter[i]
-             << "         " << getLetterFrequency(letterCounter[i], numberOfLetters) << "%" << endl;
+        printTable(getLowerCaseLetter(i + 'a'), letterCounter[i],
+                   getLetterFrequency(letterCounter[i], numberOfLetters));
         displayCounter++;
     }
+}
+
+void printTable(char currentLetter, int letterCount, double letterFrequency) {
+    printf("%-12c%-12d%-12.2f\n", currentLetter, letterCount, letterFrequency);
+
+}
+
+void printTableHeader() {
+    printf("%-12s%-12s%-12s\n", "Letter", "Count", "Frequency");
 }
 
 void initializeLetterCounter(char text[], int letterCounter[]) {
