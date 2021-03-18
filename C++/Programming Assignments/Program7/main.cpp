@@ -61,10 +61,10 @@ void mainMenu() {
 }
 
 int doesUserWantToQuit() {
-    char userChoice[81];
+    char userChoice[TWENTY_SIX()];
     do {
         printDoYouWantToQuit();
-        cin >> userChoice;
+        getLine(userChoice);
     } while (!isItALetter(userChoice[0])
              || (getLowerCaseLetter(userChoice[0]) != 'y'
                  && getLowerCaseLetter(userChoice[0]) != 'n'));
