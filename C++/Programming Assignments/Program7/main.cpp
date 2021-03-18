@@ -2,34 +2,60 @@
 
 using namespace std;
 
+void mainMenu();
+
 void getLine(char line[]);
 
-void initializeLetterCounter(char line[], int letterCounter[]);
+void initializeLetterCounter(char text[], int letterCounter[]);
 
-void countAndFrequencyOfLine(char line[], int letterCounter[]);
+void countAndFrequencyOfLine(char text[], int letterCounter[]);
 
 char getLowerCaseLetter(char upperCaseLetter);
 
 int isItALetter(char character);
 
-int getLetterCount(char line[]);
+int getLetterCount(char text[]);
 
 double getLetterFrequency(int letterCount, int numberOfLetters);
 
-int main() {
+int doesUserWantToQuit();
 
-    char line[81];
-    cout << "Enter a sentence" << endl;
-    int letterCounter[26];
-    getLine(line);
-    initializeLetterCounter(line, letterCounter);
-    countAndFrequencyOfLine(line, letterCounter);
+void printEnterASentence();
+
+void printDoYouWantToQuit();
+
+int main() {
+    mainMenu();
     return 0;
 }
 
-void countAndFrequencyOfLine(char line[], int letterCounter[]) {
+void mainMenu() {
+    char text[81];
+    int letterCounter[26];
+    do {
+        printEnterASentence();
+        getLine(text);
+
+        cout << "Your Text:\n" << text << endl;
+        initializeLetterCounter(text, letterCounter);
+        countAndFrequencyOfLine(text, letterCounter);
+    } while (doesUserWantToQuit());
+}
+
+int doesUserWantToQuit() {
+    char userChoice[81];
+    do {
+        printDoYouWantToQuit();
+        cin >> userChoice;
+    } while (!isItALetter(userChoice[0])
+             || (getLowerCaseLetter(userChoice[0]) != 'y'
+                 && getLowerCaseLetter(userChoice[0]) != 'n'));
+    return userChoice[0] == 'n' || userChoice[0] == 'N';
+}
+
+void countAndFrequencyOfLine(char text[], int letterCounter[]) {
     int displayCounter = 0;
-    int numberOfLetters = getLetterCount(line);
+    int numberOfLetters = getLetterCount(text);
     cout << "Letter    Count    Frequency\n";
     for (int i = 0; i < 26; i++) {
         if (displayCounter == 13) {
@@ -43,18 +69,18 @@ void countAndFrequencyOfLine(char line[], int letterCounter[]) {
     }
 }
 
-void initializeLetterCounter(char line[], int letterCounter[]) {
+void initializeLetterCounter(char text[], int letterCounter[]) {
     int i;
     for (i = 0; i < 26; i++) {
         letterCounter[i] = 0;
     }
     i = 0;
     do {
-        if (isItALetter(line[i])) {
-            letterCounter[getLowerCaseLetter(line[i]) - 'a']++;
+        if (isItALetter(text[i])) {
+            letterCounter[getLowerCaseLetter(text[i]) - 'a']++;
         }
         i++;
-    } while (line[i] != '\0');
+    } while (text[i] != '\0');
 }
 
 int isItALetter(char character) {
@@ -76,15 +102,15 @@ void getLine(char line[]) {
     line[i] = '\0';
 }
 
-int getLetterCount(char line[]) {
+int getLetterCount(char text[]) {
     int letterCount = 0;
     int index = 0;
     do {
-        if (isItALetter(line[index])) {
+        if (isItALetter(text[index])) {
             letterCount++;
         }
         index++;
-    } while (line[index] != '\0');
+    } while (text[index] != '\0');
     return letterCount;
 }
 
@@ -97,4 +123,14 @@ char getLowerCaseLetter(char upperCaseLetter) {
         return upperCaseLetter;
     }
     return 'a' - 'A' + upperCaseLetter;
+}
+
+void printEnterASentence() {
+    cout << "Enter a sentence" << endl;
+}
+
+void printDoYouWantToQuit() {
+    cout << "Do you want to Quit the application\n"
+            "'y' to quit\n"
+            "'n' to continue" << endl;
 }
