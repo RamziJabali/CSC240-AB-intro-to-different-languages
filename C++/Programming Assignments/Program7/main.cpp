@@ -29,7 +29,8 @@ void letterCountAndFrequencyInText(char text[], int letterCounter[]);
 
 void getLine(char line[]);
 
-void printTable(char currentLetter, int letterCount, double letterFrequency);
+void printTable(char currentLetter, int letterCount, double letterFrequency,
+                int numberOfLetters);
 
 void printTableHeader();
 
@@ -44,6 +45,19 @@ void printTerminatingApp();
 int main() {
     mainMenu();
     return 0;
+}
+
+void mainMenu() {
+    char text[FIVE_HUNDRED_ONE()];
+    int letterCounter[TWENTY_SIX()];
+    do {
+        printEnterASentence();
+        getLine(text);
+        cout << text << endl;
+        initializeLetterCounter(text, letterCounter);
+        letterCountAndFrequencyInText(text, letterCounter);
+    } while (doesUserWantToQuit());
+    printTerminatingApp();
 }
 
 int doesUserWantToQuit() {
@@ -93,19 +107,6 @@ char getLowerCaseLetter(char upperCaseLetter) {
     return 'a' - 'A' + upperCaseLetter;
 }
 
-void mainMenu() {
-    char text[FIVE_HUNDRED_ONE()];
-    int letterCounter[TWENTY_SIX()];
-    do {
-        printEnterASentence();
-        getLine(text);
-        cout << text << endl;
-        initializeLetterCounter(text, letterCounter);
-        letterCountAndFrequencyInText(text, letterCounter);
-    } while (doesUserWantToQuit());
-    printTerminatingApp();
-}
-
 void initializeLetterCounter(char text[], int letterCounter[]) {
     int i;
     for (i = 0; i < 26; i++) {
@@ -126,7 +127,8 @@ void letterCountAndFrequencyInText(char text[], int letterCounter[]) {
     printTableHeader();
     for (int i = 0; i < 26; i++) {
         printTable(getLowerCaseLetter(i + 'a'), letterCounter[i],
-                   getLetterFrequency(letterCounter[i], numberOfLetters));
+                   getLetterFrequency(letterCounter[i], numberOfLetters),
+                   numberOfLetters);
         if (displayCounter == 13) {
             printPressEnterToContinue();
             cin.get();
@@ -150,8 +152,10 @@ void getLine(char line[]) {
     line[i] = '\0';
 }
 
-void printTable(char currentLetter, int letterCount, double letterFrequency) {
-    printf("%-12c%-12d%-12.2f\n", currentLetter, letterCount, letterFrequency);
+void printTable(char currentLetter, int letterCount, double letterFrequency,
+                int numberOfLetters) {
+    printf("%-12c%-12d%-12.2f", currentLetter, letterCount, letterFrequency);
+    cout << "(" << letterCount << "/" << numberOfLetters << ")\n";
 
 }
 
