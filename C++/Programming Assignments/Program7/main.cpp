@@ -1,49 +1,49 @@
+//Author: RAMZI ELJABALI
+//Date: 01/17/2021
+//Purpose: To Get text from user, see each letter's count &
+//to then display a table with the frequency of each letter
+
 #include <iostream>
 
 using namespace std;
 
-void mainMenu();
-
-void getLine(char line[]);
-
-void initializeLetterCounter(char text[], int letterCounter[]);
-
-void letterCountAndFrequencyInText(char *text, int *letterCounter);
-
-char getLowerCaseLetter(char upperCaseLetter);
+int doesUserWantToQuit();
 
 int isItALetter(char character);
 
-int getLetterCount(char text[]);
+int getTotalLetterCount(char *text);
+
+int FIVE_HUNDRED_ONE();
+
+int TWENTY_SIX();
 
 double getLetterFrequency(int letterCount, int numberOfLetters);
 
-int doesUserWantToQuit();
+char getLowerCaseLetter(char upperCaseLetter);
+
+void mainMenu();
+
+void initializeLetterCounter(char text[], int letterCounter[]);
+
+void letterCountAndFrequencyInText(char text[], int letterCounter[]);
+
+void getLine(char line[]);
+
+void printTable(char currentLetter, int letterCount, double letterFrequency);
+
+void printTableHeader();
 
 void printEnterASentence();
 
 void printDoYouWantToQuit();
 
-void printTableHeader();
+void printPressEnterToContinue();
 
-void printTable(char currentLetter, int letterCount, double letterFrequency);
+void printTerminatingApp();
 
 int main() {
     mainMenu();
     return 0;
-}
-
-void mainMenu() {
-    char text[81];
-    int letterCounter[26];
-    do {
-        printEnterASentence();
-        getLine(text);
-
-        cout << "Your Text:\n" << text << endl;
-        initializeLetterCounter(text, letterCounter);
-        letterCountAndFrequencyInText(text, letterCounter);
-    } while (doesUserWantToQuit());
 }
 
 int doesUserWantToQuit() {
@@ -57,29 +57,53 @@ int doesUserWantToQuit() {
     return userChoice[0] == 'n' || userChoice[0] == 'N';
 }
 
-void letterCountAndFrequencyInText(char *text, int *letterCounter) {
-    int displayCounter = 0;
-    int numberOfLetters = getLetterCount(text);
-    printTableHeader();
-    for (int i = 0; i < 26; i++) {
-        if (displayCounter == 13) {
-            cout << "Press Enter to continue display" << endl;
-            cin.get();
-            displayCounter = 0;
+int isItALetter(char character) {
+    return character >= 'A' && character <= 'Z' ||
+           character >= 'a' && character <= 'z';
+}
+
+int getTotalLetterCount(char *text) {
+    int letterCount = 0;
+    int index = 0;
+    do {
+        if (isItALetter(text[index])) {
+            letterCount++;
         }
-        printTable(getLowerCaseLetter(i + 'a'), letterCounter[i],
-                   getLetterFrequency(letterCounter[i], numberOfLetters));
-        displayCounter++;
+        index++;
+    } while (text[index] != '\0');
+    return letterCount;
+}
+
+int FIVE_HUNDRED_ONE() {
+    return 501;
+}
+
+int TWENTY_SIX() {
+    return 26;
+}
+
+double getLetterFrequency(int letterCount, int numberOfLetters) {
+    return (letterCount * 100.0) / (numberOfLetters);
+}
+
+char getLowerCaseLetter(char upperCaseLetter) {
+    if (upperCaseLetter >= 'a' && upperCaseLetter <= 'z') {
+        return upperCaseLetter;
     }
+    return 'a' - 'A' + upperCaseLetter;
 }
 
-void printTable(char currentLetter, int letterCount, double letterFrequency) {
-    printf("%-12c%-12d%-12.2f\n", currentLetter, letterCount, letterFrequency);
-
-}
-
-void printTableHeader() {
-    printf("%-12s%-12s%-12s\n", "Letter", "Count", "Frequency");
+void mainMenu() {
+    char text[FIVE_HUNDRED_ONE()];
+    int letterCounter[TWENTY_SIX()];
+    do {
+        printEnterASentence();
+        getLine(text);
+        cout << text << endl;
+        initializeLetterCounter(text, letterCounter);
+        letterCountAndFrequencyInText(text, letterCounter);
+    } while (doesUserWantToQuit());
+    printTerminatingApp();
 }
 
 void initializeLetterCounter(char text[], int letterCounter[]) {
@@ -96,9 +120,20 @@ void initializeLetterCounter(char text[], int letterCounter[]) {
     } while (text[i] != '\0');
 }
 
-int isItALetter(char character) {
-    return character >= 'A' && character <= 'Z' ||
-           character >= 'a' && character <= 'z';
+void letterCountAndFrequencyInText(char text[], int letterCounter[]) {
+    int displayCounter = 0;
+    int numberOfLetters = getTotalLetterCount(text);
+    printTableHeader();
+    for (int i = 0; i < 26; i++) {
+        printTable(getLowerCaseLetter(i + 'a'), letterCounter[i],
+                   getLetterFrequency(letterCounter[i], numberOfLetters));
+        if (displayCounter == 13) {
+            printPressEnterToContinue();
+            cin.get();
+            displayCounter = 1;
+        }
+        displayCounter++;
+    }
 }
 
 void getLine(char line[]) {
@@ -115,27 +150,13 @@ void getLine(char line[]) {
     line[i] = '\0';
 }
 
-int getLetterCount(char text[]) {
-    int letterCount = 0;
-    int index = 0;
-    do {
-        if (isItALetter(text[index])) {
-            letterCount++;
-        }
-        index++;
-    } while (text[index] != '\0');
-    return letterCount;
+void printTable(char currentLetter, int letterCount, double letterFrequency) {
+    printf("%-12c%-12d%-12.2f\n", currentLetter, letterCount, letterFrequency);
+
 }
 
-double getLetterFrequency(int letterCount, int numberOfLetters) {
-    return (letterCount * 100.0) / (numberOfLetters);
-}
-
-char getLowerCaseLetter(char upperCaseLetter) {
-    if (upperCaseLetter >= 'a' && upperCaseLetter <= 'z') {
-        return upperCaseLetter;
-    }
-    return 'a' - 'A' + upperCaseLetter;
+void printTableHeader() {
+    printf("%-12s%-12s%-12s\n", "Letter", "Count", "Frequency");
 }
 
 void printEnterASentence() {
@@ -146,4 +167,12 @@ void printDoYouWantToQuit() {
     cout << "Do you want to Quit the application\n"
             "'y' to quit\n"
             "'n' to continue" << endl;
+}
+
+void printPressEnterToContinue() {
+    cout << "Press Enter to continue display" << endl;
+}
+
+void printTerminatingApp() {
+    cout << "Terminating Program..." << endl;
 }
