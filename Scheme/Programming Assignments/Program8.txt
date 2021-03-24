@@ -1,0 +1,20 @@
+;Function a) Dot product
+
+(define (dotProduct list1 list2)
+  (if (null? list1)
+  0
+  (+ (* (car list1) (car list2))
+   (dotProduct (cdr list1) (cdr list2)))
+     )
+  )
+
+
+;Function b) Does it contain duplicates
+
+(define (doesContainDupes list)
+   (cond
+     ((null? list) #f)
+     ((member (car list) (cdr list)) #t)
+     (else (doesContainDupes (cdr list)))
+  )
+)
