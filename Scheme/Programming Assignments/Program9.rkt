@@ -16,4 +16,10 @@
   )
 )
 
-;function 
+;function 3
+(define (deleteBag list item)
+  (cond
+    ((string=? (car list) item) (cdr list))
+    (else (cons (car list) (deleteBag (cdr list) item)))
+    )
+)
