@@ -23,3 +23,13 @@
     (else (cons (car list) (deleteBag (cdr list) item)))
     )
 )
+
+;function 4
+(define (deleteAllBag list item)
+  (cond
+    ((null? list) '())
+    ((string=? (car list) item) (deleteAllBag (deleteBag  list item) item))
+    (else (cons (car list) (deleteAllBag (cdr list) item)))
+   )
+)
+ 
