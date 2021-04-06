@@ -34,10 +34,16 @@
 )
 
 ;function 5
+(define (unionBag list1 list2)
+  (cond
+    ((and (null? list1) (null? list2)) '())
+    ((null? list2) (listDotted list1))
+    (else (unionBag (insertBagOnEnd list1 (car list2))
+                    (deleteBag list2 (car list2))))
+  )
+)
 
-
-
-;dottedfunction
+;Makes the dotted pair
 (define (listDotted list)
   (cond
     ((null? list) '())
@@ -47,5 +53,13 @@
          (listDotted (deleteAllBag list (car list)))
          )
      )
+   )
+)
+
+;Helper function 
+(define (insertBagOnEnd Lst Item)
+  ( if ( null? Lst )
+       (cons Item ())
+       (cons (car Lst) (insertBagOnEnd (cdr Lst) Item))
    )
 )
