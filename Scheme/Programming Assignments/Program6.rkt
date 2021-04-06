@@ -10,13 +10,14 @@
            (* commonRatio scaleFactor)
       (* commonRatio (findNthTerm commonRatio scaleFactor (- n 1)))
       )))
-;a done using the recursive formula
+;a done using the recursive formula FIXED
 (define (geometricSequence commonRatio scaleFactor N)
    (if (> N 1)
-      (* commonRatio (geometricSequence scaleFactor commonRatio (- N 1)))
+      (* commonRatio (geometricSequence commonRatio scaleFactor  (- N 1)))
       scaleFactor
    )
 )
+
 ;b
 (define (fastPower base exponent)
    (if (= exponent 0)

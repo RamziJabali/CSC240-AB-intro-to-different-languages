@@ -32,4 +32,20 @@
     (else (cons (car list) (deleteAllBag (cdr list) item)))
    )
 )
- 
+
+;function 5
+
+
+
+;dottedfunction
+(define (listDotted list)
+  (cond
+    ((null? list) '())
+    (else
+     (cons
+         (cons (car list) (getBagCount list (car list)))
+         (listDotted (deleteAllBag list (car list)))
+         )
+     )
+   )
+)
