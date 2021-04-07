@@ -18,13 +18,12 @@
    )
 )
 
-;b
+;b FIXED
 (define (fastPower base exponent)
    (if (= exponent 0)
       1
       (if (even? exponent)
-         (sqr (fastPower base (/ exponent 2)))
-         (* base (fastPower base (- exponent 1)))
-      )
+         (expt (fastPower base (/ exponent 2)) 2)
+         (* base (expt (fastPower base (/ (- exponent 1) 2)) 2))      )
    )
 )

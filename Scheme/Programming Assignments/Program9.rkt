@@ -76,7 +76,7 @@
          (cons (car list) (getBagCount list (car list)))
          (listDotted (deleteAllBag list (car list)))
          )
-     )
+      )
    )
 )
 
@@ -95,4 +95,46 @@
   ((= numOfInserts 0) list)
   (else (insertAllBag (insertBag list item) item (- numOfInserts 1)))
   )
+)
+
+(define (inOrder lst)
+   (if (null? lst)
+ 	#t
+   (if (null? (cdr lst))
+ 	#t
+   (if (> (car lst) (car (cdr lst)))
+ 	#f
+   (inOrder (cdr lst))
+   )
+  )
+ )
+)
+
+(define (bubblePass lst)
+   (if (or (null? lst) (null? (cdr lst)))
+	lst
+   (if (< (car lst) (car (cdr lst)))
+   (cons
+     (car lst)
+     (bubblePass (cdr lst))
+ )
+
+   (cons
+      (car (cdr lst))
+      (bubblePass
+          (cons
+	      (car lst)
+ 	      (cdr (cdr lst))
+     )
+    )
+   )
+  )
+ )
+)
+
+(define (bubbleSort lst)
+   (if (inOrder lst)
+      lst
+   (bubbleSort (bubblePass lst))
+ )
 )
