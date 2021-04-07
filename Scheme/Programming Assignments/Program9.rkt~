@@ -38,32 +38,8 @@
   (cond
     ((and (null? list1) (null? list2)) '())
     ((null? list2) (listDotted list1))
-    ((null? list1) (listDotted list2))
     (else (unionBag (insertBagOnEnd list1 (car list2))
                     (deleteBag list2 (car list2))))
-  )
-)
-
-;function 6
-(define (intersectionBag list1 list2)
- (cond
-    ((and (null? list1) (null? list2)) '())
-    ((null? list1) (listDotted list2))
-    ((null? list2) (listDotted list1))
-
-    ((= 0 (getBagCount list2 (car list1)))
-     (intersectionBag (deleteAllBag list1 (car list1)) (insertAllBag list2 (car List1))))
-
-    ((= (getBagCount list1 (car list1)) (getBagCount list2 (car list1)))
-     (intersectionBag (deleteAllBag list1 (car list1)) list2))
-
-    ((> (getBagCount list1 (car list1)) (getBagCount list2 (car list1)))
-     (intersectionBag (deleteAllBag list1 (car list1)) list2))
-
-    (else (intersectionBag list1
-            (insertAllBag
-              (deleteAllBag list2 (car list1)) (car list1)
-               (getBagCount list1 (car list1)))))
   )
 )
 
@@ -80,19 +56,10 @@
    )
 )
 
-
-;Alternative to function 2
+;Helper function 
 (define (insertBagOnEnd Lst Item)
   ( if ( null? Lst )
        (cons Item ())
        (cons (car Lst) (insertBagOnEnd (cdr Lst) Item))
    )
-)
-
-;Helper function
-(define (insertAllBag list item numOfInserts)
-(cond
-  ((= numOfInserts 0) list)
-  (else (insertAllBag (insertBag list item) item (- numOfInserts 1)))
-  )
 )
