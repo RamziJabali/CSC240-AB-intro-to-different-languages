@@ -1,14 +1,26 @@
 ;Function 1
 
+;regular list: ex '("a"  "a" "b" "c")
 (define (getBagCount list item)
   (cond
     ((null? list) 0)
-    ((string=? (car list) item) (+ 1 (getBagCount (cdr list) item)))
+    ((string=? (car list) item) (+ 1 (getBagCount (cdr (car list)) item)))
     (else (+ 0 (getBagCount (cdr list) item)))
   )
 )
 
+;dotted list: Ex '(("a" . 2) ("b" . 1) ("c" . 1)) 
+(define (getBagCountF list item)
+  (cond
+    ((null? list) 0)
+    ((string=? (car (car list)) item) (cdr (car list)))
+    (else (getBagCountF (cdr list) item))
+    )
+)
+
 ;function 2
+
+;regular lists ex: '("a" "a" "b" "c")
 (define (insertBag list item)
   (cond
     ((null? list) (cons item ()))
@@ -16,7 +28,22 @@
   )
 )
 
+;dotted list: Ex '(("a" . 2) ("b" . 1) ("c" . 1)) 
+(define (insertBagF list item)
+(cond
+    ((null? list) (cons (cons item 1) list))
+    ((string=? (car (car list)) item) (cons (cons item (+ (cdr (car list)) 1)) (cdr list)))
+    (else (cons
+          (cons (car (car list)) (cdr (car list)))
+          (insertBagF (cdr list) item)
+          )
+       )
+    )
+)
+  
 ;function 3
+
+;regular list: ex '("a"  "a" "b" "c")
 (define (deleteBag list item)
   (cond
     ((string=? (car list) item) (cdr list))
@@ -24,7 +51,23 @@
     )
 )
 
+;dotted list: Ex '(("a" . 2) ("b" . 1) ("c" . 1))
+(define (deleteBagF list item)
+  (cond
+    ((null? list) ())
+    ((and (string=? (car (car list)) item) (= (cdr (car list)) 1)) (cdr list))
+    ((string=? (car (car list)) item) (cons (cons item (- (cdr (car list)) 1)) (cdr list)))
+    (else (cons
+          (cons (car (car list)) (cdr (car list)))
+          (deleteBagF (cdr list) item)
+        )
+      )
+   )
+)
+
 ;function 4
+
+;regular lists ex: '("a" "a" "b" "c")
 (define (deleteAllBag list item)
   (cond
     ((null? list) '())
@@ -33,7 +76,38 @@
    )
 )
 
+;dotted list: Ex '(("a" . 2) ("b" . 1) ("c" . 1))
+
+;done using nothing but this function
+(define (deleteAllBagF list item)
+(cond
+    ((null? list) '())
+    ((string=? (car (car list)) item) (cdr list))
+    (else (cons
+          (cons (car (car list)) (cdr (car list)))
+          (deleteAllBagF (cdr list) item)
+         )
+      )
+   )
+)
+
+;dotted list: Ex '(("a" . 2) ("b" . 1) ("c" . 1))
+
+;done using deleteBagF function previously made
+(define (deleteAllBagF2 list item)
+  (cond
+    ((null? list) '())
+    ((string=? (car (car list)) item) (deleteAllBagF2 (deleteBagF list item) item))
+    (else (cons
+          (cons (car (car list)) (cdr (car list)))
+          (deleteAllBagF2 (cdr list) item)
+         )
+    )
+  )
+)
+
 ;function 5
+;regular list: ex '("a"  "a" "b" "c")
 (define (unionBag list1 list2)
   (cond
     ((and (null? list1) (null? list2)) '())
@@ -44,7 +118,16 @@
   )
 )
 
+;dotted list: Ex '(("a" . 2) ("b" . 1) ("c" . 1))
+(define (unionBagF list1 list2)
+  (cond
+   (and (null? list))
+   )
+
+)
+
 ;function 6
+;regular lists ex: '("a" "a" "b" "c")
 (define (intersectionBag list1 list2)
  (cond
     ((and (null? list1) (null? list2)) '())
@@ -68,7 +151,7 @@
 )
 
 ;Makes the dotted pair
-(define (listDotted list)
+(define (listDotted list )
   (cond
     ((null? list) '())
     (else
@@ -82,59 +165,10 @@
 
 
 ;Alternative to function 2
+;regular lists ex: '("a" "a" "b" "c")
 (define (insertBagOnEnd Lst Item)
   ( if ( null? Lst )
        (cons Item ())
        (cons (car Lst) (insertBagOnEnd (cdr Lst) Item))
    )
-)
-
-;Helper function
-(define (insertAllBag list item numOfInserts)
-(cond
-  ((= numOfInserts 0) list)
-  (else (insertAllBag (insertBag list item) item (- numOfInserts 1)))
-  )
-)
-
-(define (inOrder lst)
-   (if (null? lst)
- 	#t
-   (if (null? (cdr lst))
- 	#t
-   (if (> (car lst) (car (cdr lst)))
- 	#f
-   (inOrder (cdr lst))
-   )
-  )
- )
-)
-
-(define (bubblePass lst)
-   (if (or (null? lst) (null? (cdr lst)))
-	lst
-   (if (< (car lst) (car (cdr lst)))
-   (cons
-     (car lst)
-     (bubblePass (cdr lst))
- )
-
-   (cons
-      (car (cdr lst))
-      (bubblePass
-          (cons
-	      (car lst)
- 	      (cdr (cdr lst))
-     )
-    )
-   )
-  )
- )
-)
-
-(define (bubbleSort lst)
-   (if (inOrder lst)
-      lst
-   (bubbleSort (bubblePass lst))
- )
 )

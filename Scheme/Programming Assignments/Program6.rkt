@@ -24,6 +24,6 @@
       1
       (if (even? exponent)
          (expt (fastPower base (/ exponent 2)) 2)
-         (* base (expt (fastPower base (/ (- exponent 1) 2)) 2))      )
+         (* base (expt (fastPower base (/ (- exponent 1) 2)) 2)))
    )
 )
