@@ -121,9 +121,12 @@
 ;dotted list: Ex '(("a" . 2) ("b" . 1) ("c" . 1))
 (define (unionBagF list1 list2)
   (cond
-   (and (null? list))
+   ((and (null? list1) (null? list2)) '())
+   ((null? list1) list2)
+   ((null? list2) list1)
+   ((string=? (car (car list1)) (car (car list2)))
+    (unionBagF (cdr list1) (cons (cons (car (car list1)) (+ (cdr (car list1)) (cdr (car list2)))) (cdr list2))))
    )
-
 )
 
 ;function 6
@@ -148,6 +151,25 @@
               (deleteAllBag list2 (car list1)) (car list1)
                (getBagCount list1 (car list1)))))
   )
+)
+
+;dotted list: Ex '(("a" . 2) ("b" . 1) ("c" . 1))
+(define (intersectionBagF list1 list2)
+  (cond
+   ((and (null? list1) (null? list2)) '())
+   ((null? list1) ())
+   ((null? list2) list1)
+   ((<= (getBagCountF list1 (car(car list1))) (getBagCountF list2 (car(car list1))))
+    (cons
+         (cons (car (car list1)) (cdr (car list1)))
+         (intersectionBagF (cdr list1) list2)
+         ))
+   ((> (getBagCountF list1 (car(car list1))) (getBagCountF list2 (car(car list1))))
+    (cons
+         (cons (car (car list1)) (getBagCountF list2 (car(car list1))))
+         (intersectionBagF (cdr list1) list2)
+         ))
+   )
 )
 
 ;Makes the dotted pair
