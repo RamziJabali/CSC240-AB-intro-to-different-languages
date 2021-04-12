@@ -40,6 +40,13 @@
        )
     )
 )
+;helper function
+(define (insertAllBagF list item itemCount)
+  (cond
+    ((= 0 itemCount) list)
+    (else (insertAllBagF (insertBagF list item) item (- itemCount 1)))
+   )
+  )
   
 ;function 3
 
@@ -124,8 +131,7 @@
    ((and (null? list1) (null? list2)) '())
    ((null? list1) list2)
    ((null? list2) list1)
-   ((string=? (car (car list1)) (car (car list2)))
-    (unionBagF (cdr list1) (cons (cons (car (car list1)) (+ (cdr (car list1)) (cdr (car list2)))) (cdr list2))))
+   (else (unionBagF (insertAllBagF list1 (car (car list2)) (cdr (car list2))) (cdr list2)))
    )
 )
 
