@@ -35,7 +35,7 @@ rulerOf(fahd_bin_abdulaziz_al_saud, saudi_arabia, 1982, 2005).
 rulerOf(abdullah_bin_abdulaziz_al_saud, saudi_arabia, 1982, 2005).
 rulerOf(salman_bin_abdulaziz_al_saud, saudi_arabia, 2015, current).
 
-parentOf(abdulaziz_ibn_saud,fahad_saud_bin_abdulaziz_al_saud).
+parentOf(abdulaziz_ibn_saud, fahad_saud_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, faisal_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, khaled_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, fahd_bin_abdulaziz_al_saud).
@@ -72,3 +72,16 @@ grandparentOf(Grandparent, Grandchild):-
 siblingOf(Sibling, Person):-
     parentOf(Parent, Sibling),
     parentOf(Parent, Person).
+
+%auntOrUncleOf( <auntOrUncle>, <nieceOrNephew> ).
+auntOrUncleOf(AU, N):-
+    siblingOf(AU,Parent),
+    parentOf(Parent, N).
+
+%ancestorOf(<ancestor>, <person>).
+ancestorOf(Ancestor, Person):-
+    parentOf(Ancestor,Person).
+
+ancestorOf(Ancestor, Person):-
+    parentOf(Ancestor, X),
+    ancestorOf(X, Person).
