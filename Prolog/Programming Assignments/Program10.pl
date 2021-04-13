@@ -85,3 +85,11 @@ ancestorOf(Ancestor, Person):-
 ancestorOf(Ancestor, Person):-
     parentOf(Ancestor, X),
     ancestorOf(X, Person).
+
+%descendentOf(<descendent>, <person>).
+descendentOf(Descendent, Person):-
+    parentOf(Person, Descendent).
+
+descendentOf(Descendent, Person):-
+    parentOf(Person, X),
+    descendentOf(Descendent, X).
