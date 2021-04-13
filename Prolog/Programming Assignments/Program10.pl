@@ -1,3 +1,7 @@
+% Ramzi Eljabali
+% Date 04/12/2021
+% purpose: data base about the Saudi Royal family
+% it will be used in future assignments
 lifespan(abdulaziz_ibn_saud, 1875, 1953).
 lifespan(fahad_saud_bin_abdulaziz_al_saud, 1902, 1969).
 lifespan(faisal_bin_abdulaziz_al_saud, 1906, 1975).
@@ -41,7 +45,6 @@ parentOf(abdulaziz_ibn_saud, talal_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, nayef_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, salman_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, muqrin_bin_abdulaziz_al_saud).
-parentOf(fahad_saud_bin_abdulaziz_al_saud, amal_bint_fahad).
 parentOf(faisal_bin_abdulaziz_al_saud, saud_bin_faisal_al_saud).
 parentOf(faisal_bin_abdulaziz_al_saud, khaled_bin_faisal_al_saud).
 parentOf(abdullah_bin_abdulaziz_al_saud, miteb_bin_abdullah_al_saud).
@@ -54,3 +57,18 @@ parentOf(sultan_bin_abdulaziz_al_saud, bandar_bin_sultan_al_Saud).
 parentOf(talal_bin_abdulaziz_al_saud, alwaleed_bin_talal_al_saud).
 parentOf(nayef_bin_abdulaziz_al_saud, saud_bin_nayef_al_saud).
 parentOf(nayef_bin_abdulaziz_al_saud, mohammed_bin_nayef_al_saud).
+
+%predicates
+%childOf(<son's name>, <parent's name>)
+childOf(Son , Parent):-
+    parentOf(Parent, Son).
+
+%grandparentOf( <grandparent's name> <grandchild's name> ).
+grandparentOf(Grandparent, Grandchild):-
+    parentOf(Grandparent, Parent),
+    parentOf( Parent, Grandchild).
+
+%siblingOf <sibling's name>, <person's name> ).
+siblingOf(Sibling, Person):-
+    parentOf(Parent, Sibling),
+    parentOf(Parent, Person).
