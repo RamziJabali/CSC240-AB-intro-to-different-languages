@@ -1,7 +1,7 @@
 % Ramzi Eljabali
 % Date 04/12/2021
 % purpose: data base about the Saudi Royal family
-% it will be used in future assignments
+% it will be used in future assignments 
 lifespan(abdulaziz_ibn_saud, 1875, 1953).
 lifespan(fahad_saud_bin_abdulaziz_al_saud, 1902, 1969).
 lifespan(faisal_bin_abdulaziz_al_saud, 1906, 1975).
@@ -35,7 +35,7 @@ rulerOf(fahd_bin_abdulaziz_al_saud, saudi_arabia, 1982, 2005).
 rulerOf(abdullah_bin_abdulaziz_al_saud, saudi_arabia, 1982, 2005).
 rulerOf(salman_bin_abdulaziz_al_saud, saudi_arabia, 2015, current).
 
-parentOf(abdulaziz_ibn_saud, fahad_saud_bin_abdulaziz_al_saud).
+parentOf(abdulaziz_ibn_saud,fahad_saud_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, faisal_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, khaled_bin_abdulaziz_al_saud).
 parentOf(abdulaziz_ibn_saud, fahd_bin_abdulaziz_al_saud).
@@ -57,51 +57,3 @@ parentOf(sultan_bin_abdulaziz_al_saud, bandar_bin_sultan_al_Saud).
 parentOf(talal_bin_abdulaziz_al_saud, alwaleed_bin_talal_al_saud).
 parentOf(nayef_bin_abdulaziz_al_saud, saud_bin_nayef_al_saud).
 parentOf(nayef_bin_abdulaziz_al_saud, mohammed_bin_nayef_al_saud).
-
-%predicates
-%childOf(<son's name>, <parent's name>)
-childOf(Son , Parent):-
-    parentOf(Parent, Son).
-
-%grandparentOf( <grandparent's name> <grandchild's name> ).
-grandparentOf(Grandparent, Grandchild):-
-    parentOf(Grandparent, Parent),
-    parentOf( Parent, Grandchild).
-
-%siblingOf <sibling's name>, <person's name> ).
-siblingOf(Sibling, Person):-
-    parentOf(Parent, Sibling),
-    parentOf(Parent, Person).
-
-%auntOrUncleOf( <auntOrUncle>, <nieceOrNephew> ).
-auntOrUncleOf(AU, N):-
-    siblingOf(AU,Parent),
-    parentOf(Parent, N).
-
-%ancestorOf(<ancestor>, <person>).
-ancestorOf(Ancestor, Person):-
-    parentOf(Ancestor,Person).
-
-ancestorOf(Ancestor, Person):-
-    parentOf(Ancestor, X),
-    ancestorOf(X, Person).
-
-%descendentOf(<descendent>, <person>).
-descendentOf(Descendent, Person):-
-    parentOf(Person, Descendent).
-
-descendentOf(Descendent, Person):-
-    parentOf(Person, X),
-    descendentOf(Descendent, X).
-
-
-
-%successorOf( <ruler>, <successor>).
-successorOf(Ruler, Successor) :-
-    rulerOf(Ruler, Country, Start1, End1),
-    rulerOf(Successor, Country, Start2, End2),
-    areTheyEqual(Start2, End1).
-
-%compareDates( <start1>, <start2>, <end1>, <end2>).
-areTheyEqual(Date1, Date2):-
-    Date1 =:= Date2.
