@@ -93,3 +93,15 @@ descendentOf(Descendent, Person):-
 descendentOf(Descendent, Person):-
     parentOf(Person, X),
     descendentOf(Descendent, X).
+
+
+
+%successorOf( <ruler>, <successor>).
+successorOf(Ruler, Successor) :-
+    rulerOf(Ruler, Country, Start1, End1),
+    rulerOf(Successor, Country, Start2, End2),
+    areTheyEqual(Start2, End1).
+
+%compareDates( <start1>, <start2>, <end1>, <end2>).
+areTheyEqual(Date1, Date2):-
+    Date1 =:= Date2.
