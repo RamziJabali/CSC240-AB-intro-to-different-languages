@@ -7,24 +7,21 @@
     )
 )
 
-; for testing purposes
-(define (test matrix)
-(car(cdr matrix))
-)
+(define (setMatrixCell matrix row column item)
+  (cond
+    ((null? matrix) ())
+    ((> row 1) (cons (car matrix) (setMatrixCell (cdr matrix) (- row 1) column item)))
+    ((>= column 1) (cons (replaceItemInList (car matrix) item column) (setMatrixCell (cdr matrix) row 0 item)))
+    (else (cons (car matrix) (setMatrixCell (cdr matrix) row column item)))
+    )
+  )
 
-(define (test2 matrix)
-(cdr matrix)
-)
-
-(define (test3 matrix)
-(car(car matrix))
-)
-
-
-(define (test4 matrix)
-(cdr (car matrix))
-)
-
-(define (test5 matrix)
-(car matrix)
+;Helper function
+(define (replaceItemInList list item iNumber)
+  (cond 
+    ((null? list) ())
+    ((> iNumber 1) (cons (car list) (replaceItemInList (cdr list) item (- iNumber 1))))
+    ((= iNumber 1) (cons item (replaceItemInList (cdr list) item (- iNumber 1))))
+    (else (cons (car list) (replaceItemInList (cdr list) item iNumber)))
+    )
 )
