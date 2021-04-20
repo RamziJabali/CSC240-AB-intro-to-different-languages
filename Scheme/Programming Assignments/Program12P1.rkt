@@ -1,3 +1,7 @@
+;Author: Ramzi Eljabali
+;Date: 04/20/2021
+;Purpose: part 1 of a bigger program 
+
 (define (getMatrixCell matrix row column)
   (cond
     ((> row 1) (getMatrixCell (cdr matrix) (- row 1) column))
