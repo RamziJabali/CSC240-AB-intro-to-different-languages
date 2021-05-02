@@ -57,6 +57,19 @@
    )
 )
 
+(define (RELMakeMove)
+  (replaceZero (random 8))
+)
+
+;helper
+(define (replaceZero num)
+  (cond
+    ((= num 0) (+ num 1))
+    (#t num)
+  )
+)
+
+
 ;12 a functions
 (define (getMatrixCell matrix row column)
   (cond
