@@ -3,35 +3,40 @@
 
 ;function 1
 (define (RELStartGame)
-  (begin
-    (set! RELGameState '("REL"("***" "***" "***" "***" "***" "***" "***")
-                       ("***" "***" "***" "***" "***" "***" "***")
-                       ("***" "***" "***" "***" "***" "***" "***")
-                       ("***" "***" "***" "***" "***" "***" "***")
-                       ("***" "***" "***" "***" "***" "***" "***")
-                       ("***" "***" "***" "***" "***" "***" "***")))
-    #t
+    (set! RELGameState '("X"(0 0 0 0 0 0 0)
+                            (0 0 0 0 0 0 0)
+                            (0 0 0 0 0 0 0)
+                            (0 0 0 0 0 0 0)
+                            (0 0 0 0 0 0 0)
+                            (0 0 0 0 0 0 0))
+          )
+  #t
   )
-)
-
 ;function 2
 (define (RELMarkMove column)
   (begin
-   (display (RELLegalMove column))
-   (newline)
-    (if (RELLegalMove column)   
-        (cond
-          ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 6 column)) (set! RELGameState (cons (car RELGameState) (setMatrixCell (cdr RELGameState) 6 column (car RELGameState)))))
-          ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 5 column)) (set! RELGameState (cons (car RELGameState) (setMatrixCell (cdr RELGameState) 5 column (car RELGameState)))))
-          ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 4 column)) (set! RELGameState (cons (car RELGameState) (setMatrixCell (cdr RELGameState) 4 column (car RELGameState)))))
-          ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 3 column)) (set! RELGameState (cons (car RELGameState) (setMatrixCell (cdr RELGameState) 3 column (car RELGameState)))))
-          ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 2 column)) (set! RELGameState (cons (car RELGameState) (setMatrixCell (cdr RELGameState) 2 column (car RELGameState)))))
-          ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 1 column)) (set! RELGameState (cons (car RELGameState) (setMatrixCell (cdr RELGameState) 1 column (car RELGameState)))))
-          ) 
+    (if (RELLegalMove column)
+        (RELDecrementRow 6 column)
         )
+    column 
     )
-  ) 
+  )
 
+;helper
+(define (RELDecrementRow row column)
+ (cond
+   ((= row 0) ())
+   ((equal? 0 (RELGetMatrixCell (cdr RELGameState) row column)) (set! RELGameState (RELChangePlayer (RELSetMatrixCell (cdr RELGameState) row column (car RELGameState)) (car RELGameState))))
+   (#t (RELDecrementRow (- row 1) column))
+   )
+)
+
+(define (RELChangePlayer matrix player)
+  (cond
+  ((equal? "X" player) (cons "O" matrix))
+  (#t (cons "X" matrix))
+  )
+)
 
 
 ;function 3
@@ -40,29 +45,29 @@
     (display "Player ")
     (display (car RELGameState))
     (newline)
-    (matrixNavigator (cdr RELGameState))
+    (RELMatrixNavigator (cdr RELGameState))
   #t
   )
 )
 
-;helper
-(define (matrixNavigator matrix)
+;helper for show game
+(define (RELMatrixNavigator matrix)
   (cond
    ((null? matrix) ())
    (else (begin
     (display (car matrix))
     (newline)
-    (matrixNavigator (cdr matrix))))
+    (RELMatrixNavigator (cdr matrix))))
    )
 )
 
 ;function 4
 (define (RELMakeMove)
-  (replaceZero (random 8))
+  (RELReplaceZero (random 8))
 )
 
 ;helper
-(define (replaceZero num)
+(define (RELReplaceZero num)
   (cond
     ((= num 0) (+ num 1))
     (#t num)
@@ -74,14 +79,17 @@
      (cond
       ((< column 1) #f)
       ((> column 7) #f)
-      ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 6 column)) #t)
-      ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 5 column)) #t)
-      ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 4 column)) #t)
-      ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 3 column)) #t)
-      ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 2 column)) #t)
-      ((equal? "***" (RELGetMatrixCell (cdr RELGameState) 1 column)) #t)
+      ((RELIsItLegal 6 column) #t)
       (#t #f)
       )
+  )
+;helper
+(define (RELIsItLegal row column)
+ (cond
+   ((= row 0) ())
+   ((equal? 0 (RELGetMatrixCell (cdr RELGameState) row column)) #t)
+   (#t (RELDecrementRow (- row 1) column))
+   )
   )
 
 ;6
@@ -94,7 +102,7 @@
   ((>= (+ (RELNumberOfPlayersDiagonallyToTheBottomLeft (RELGetTopMostOccupiedRow 6 columnOfLastMove) columnOfLastMove)
           (RELNumberOfPlayersDiagonallyToTheTopRight (RELGetTopMostOccupiedRow 6 columnOfLastMove) columnOfLastMove)) 4) #t)
   ((>= (+ (RELNumberOfPlayersDiagonallyToTheBottomRight (RELGetTopMostOccupiedRow 6 columnOfLastMove) columnOfLastMove)
-          (RELNumberOfPlayersDiagonallyToTheTopLeft (RELGetTopMostOccupiedRow 6 columnOfLastMove) columnOfLastMove)) 4) #t)
+          (RELNumberOfPlayersDiagonallyToTopLeft (RELGetTopMostOccupiedRow 6 columnOfLastMove) columnOfLastMove)) 4) #t)
   )
   )
   #f
@@ -131,12 +139,10 @@
    (cond
     ((> row 6)  0)
     ((> column 7)  0)
-    ((equal? (car RELGameState)(RELGetMatrixCell (cdr RELGameState) row column)) (+ 1 (RELNumberOfPlayersVertically (+ row 1) + column 1)))
+    ((equal? (car RELGameState)(RELGetMatrixCell (cdr RELGameState) row column)) (+ 1 (RELNumberOfPlayersVertically (+ row 1) (+ column 1))))
     (#t 0)
     )
   )
-
-
   
 (define (RELNumberOfPlayersVertically row column)
   (cond
@@ -162,7 +168,6 @@
     )
   )
 
-
 (define (RELGetTopMostOccupiedRow row column)
   (cond
     ((= row 0) 0)
@@ -171,6 +176,21 @@
     )
 )
 
+;function 7
+(define (RELWillWinP column)
+  (begin
+  (display (RELWinP (RELMarkMove column)))
+  (newline)
+  (set! RELGameState (cons (RELOppositePlayer (car RELGameState)) (RELSetMatrixCell (cdr RELGameState) (RELGetTopMostOccupiedRow 6 column) column 0))) 
+  )
+  )
+
+(define (RELOppositePlayer name)
+  (cond
+    ((equal? name "X") "O")
+    (#t "X")
+    )
+  )
 
 ;12 a functions
 (define (RELGetMatrixCell matrix row column)
@@ -182,21 +202,21 @@
     )
 )
 
-(define (setMatrixCell matrix row column item)
+(define (RELSetMatrixCell matrix row column item)
   (cond
     ((null? matrix) ())
-    ((> row 1) (cons (car matrix) (setMatrixCell (cdr matrix) (- row 1) column item)))
-    ((>= column 1) (cons (replaceItemInList (car matrix) item column) (setMatrixCell (cdr matrix) row 0 item)))
-    (#t (cons (car matrix) (setMatrixCell (cdr matrix) row column item)))
+    ((> row 1) (cons (car matrix) (RELSetMatrixCell (cdr matrix) (- row 1) column item)))
+    ((>= column 1) (cons (RELReplaceItemInList (car matrix) item column) (RELSetMatrixCell (cdr matrix) row 0 item)))
+    (#t (cons (car matrix) (RELSetMatrixCell (cdr matrix) row column item)))
     )
   )
 
 ;Helper function
-(define (replaceItemInList list item iNumber)
+(define (RELReplaceItemInList list item iNumber)
   (cond 
     ((null? list) ())
-    ((> iNumber 1) (cons (car list) (replaceItemInList (cdr list) item (- iNumber 1))))
-    ((= iNumber 1) (cons item (replaceItemInList (cdr list) item (- iNumber 1))))
-    (#t (cons (car list) (replaceItemInList (cdr list) item iNumber)))
+    ((> iNumber 1) (cons (car list) (RELReplaceItemInList (cdr list) item (- iNumber 1))))
+    ((= iNumber 1) (cons item (RELReplaceItemInList (cdr list) item (- iNumber 1))))
+    (#t (cons (car list) (RELReplaceItemInList (cdr list) item iNumber)))
     )
 )
