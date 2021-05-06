@@ -98,6 +98,7 @@
 (define (RELWinP columnOfLastMove)
   (if (> (RELGetTopMostOccupiedRow 6 columnOfLastMove) 0)
   (cond
+  ((= 7 (RELGetTopMostOccupiedRow 6 columnOfLastMove)) #f)
   ((>= (RELNumberOfPlayersVertically (cdr RELGameState) (RELGetTopMostOccupiedRow 6 columnOfLastMove) columnOfLastMove) 4) #t)
   ((>= (+ (RELNumberOfPlayersHorizontallyLeft (cdr RELGameState) (RELGetTopMostOccupiedRow 6 columnOfLastMove) columnOfLastMove)
           (RELNumberOfPlayersHorizontallyRight (cdr RELGameState) (RELGetTopMostOccupiedRow 6 columnOfLastMove) columnOfLastMove))4) #t)
@@ -121,35 +122,35 @@
 
 (define (RELNumberOfPlayersDiagonallyToTheBottomRight board row column)
    (cond
-    ((< row 1)  0)
+    ((> row 6)  0)
     ((> column 7)  0)
-    ((equal? (car RELGameState)(RELGetMatrixCell board row column)) (+ 1 (RELNumberOfPlayersDiagonallyToTheBottomRight board (- row 1) (- column 1))))
+    ((equal? (car RELGameState)(RELGetMatrixCell board row column)) (+ 1 (RELNumberOfPlayersDiagonallyToTheBottomRight board (+ row 1) (+ column 1))))
     (#t 0)
     )
   )
 
 (define (RELNumberOfPlayersDiagonallyToTopLeft board row column)
    (cond
-    ((> row 6)  0)
+    ((< row 1)  0)
     ((< column 1)  0)
-    ((equal? (car RELGameState)(RELGetMatrixCell board row column)) (+ 1 (RELNumberOfPlayersDiagonallyToTopLeft board (+ row 1) (- column 1))))
+    ((equal? (car RELGameState)(RELGetMatrixCell board row column)) (+ 1 (RELNumberOfPlayersDiagonallyToTopLeft board (- row 1) (- column 1))))
     (#t 0)
     )
   )
 
 (define (RELNumberOfPlayersDiagonallyToTheTopRight board row column)
    (cond
-    ((> row 6)  0)
+    ((< row )  0)
     ((> column 7)  0)
-    ((equal? (car RELGameState)(RELGetMatrixCell board row column)) (+ 1 (RELNumberOfPlayersDiagonallyToTheTopRight board (+ row 1) (+ column 1))))
+    ((equal? (car RELGameState)(RELGetMatrixCell board row column)) (+ 1 (RELNumberOfPlayersDiagonallyToTheTopRight board (- row 1) (+ column 1))))
     (#t 0)
     )
   )
   
 (define (RELNumberOfPlayersVertically board row column)
   (cond
-    ((< row 1)  0)
-    ((equal? (car RELGameState)(RELGetMatrixCell board row column)) (+ 1 (RELNumberOfPlayersVertically board (- row 1) column)))
+    ((> row 6)  0)
+    ((equal? (car RELGameState)(RELGetMatrixCell board row column)) (+ 1 (RELNumberOfPlayersVertically board (+ row 1) column)))
     (#t 0)
     )
   )
@@ -172,16 +173,15 @@
 
 (define (RELGetTopMostOccupiedRow row column)
   (cond
-    ((= row 0) 0)
-    ((equal? (car RELGameState)(RELGetMatrixCell (cdr RELGameState) row column)) row)
-    (#t (RELGetTopMostOccupiedRow (- row 1) column))
+    ((equal? (car RELGameState)  (RELGetMatrixCell (cdr RELGameState) row column)) (RELGetTopMostOccupiedRow (- row 1) column))
+    (#t (+ row 1))
     )
 )
 
 ;function 7
 (define (RELWillWinP column)
     (RELCreateAndTestNewMatrix
-     (RELSetMatrixCell (cdr RELGameState) (+ (RELGetTopMostOccupiedRow 6 column) 1) column (car RELGameState)) (+ (RELGetTopMostOccupiedRow 6 column) 1) column)
+     (RELSetMatrixCell (cdr RELGameState) (- (RELGetTopMostOccupiedRow 6 column) 1) column (car RELGameState)) (- (RELGetTopMostOccupiedRow 6 column) 1) column)
 )
 
 ;helpers
