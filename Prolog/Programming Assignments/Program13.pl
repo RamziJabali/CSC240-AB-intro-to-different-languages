@@ -1,4 +1,7 @@
 %quest to go to Quick Trip
+%author: Ramzi Eljabali
+%date: 05/10/2021
+%purpose: to go to quick trip
 
 start_state(quicktrip).
 
