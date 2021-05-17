@@ -5,6 +5,7 @@
 //and death rate.
 //date: 02/02/2021
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -12,10 +13,14 @@ int getUserInputInt();
 
 double getUserInputDouble();
 
+char getUserInputChar();
+
+char checkUserInputChar(char data, int partOfProgram);
+
 int checkUserInputInt(int data, int partOfProgram);
 
 int getTotalNumberOfPigs(int pigCapacity, int initialPopulation, int timeline,
-                         int doesUserWantTable, double growthRate);
+                         char doesUserWantTable, double growthRate);
 
 int checkUserInputDouble(double data);
 
@@ -50,7 +55,8 @@ int main() {
 
 void applicationMenu() {
     int partOfProgram = 0;
-    int pigCapacity, initialPopulation, timeline, restart, doesUserWantTable;
+    int pigCapacity, initialPopulation, timeline;
+    char restart, doesUserWantTable;
     double deathRate, birthRate;
 
     do {
@@ -101,25 +107,13 @@ void applicationMenu() {
                 }
                 break;
             case 5:
-                printWouldYouLikeToAnswerTheQuestionsAgain();
-                restart = getUserInputInt();
-                if (checkUserInputInt(restart, partOfProgram) == 1) {
-                    if (restart == 1) {
-                        partOfProgram = 1;
-                    } else {
-                        partOfProgram = 6;
-                    }
-                }
-                break;
-            case 6:
                 printWouldYouLikeATable();
-                doesUserWantTable = getUserInputInt();
-                if (checkUserInputInt(doesUserWantTable, partOfProgram) == 1) {
-                    if (doesUserWantTable == 1) {
+                doesUserWantTable = getUserInputChar();
+                if (checkUserInputChar(doesUserWantTable, partOfProgram) == 1) {
+                    if (doesUserWantTable == 'y') {
                         getTotalNumberOfPigs(pigCapacity, initialPopulation,
                                              timeline, doesUserWantTable, birthRate - deathRate);
                     } else {
-                        partOfProgram++;
                         cout << "Total number of pigs after " << timeline << " months "
                                                                              "\n"
                                                                              "is " <<
@@ -127,38 +121,67 @@ void applicationMenu() {
                                                   timeline, doesUserWantTable, birthRate - deathRate)
                              << endl;
                     }
+                    partOfProgram++;
                 }
-                printWouldYouLikeToStartANewFarm();
-                restart = getUserInputInt();
-                if (checkUserInputInt(restart, partOfProgram) == 1) {
-                    if (restart == 1) {
-                        partOfProgram = 0;
+                break;
+            case 6:
+                printWouldYouLikeToAnswerTheQuestionsAgain();
+                restart = getUserInputChar();
+                if (checkUserInputChar(restart, partOfProgram) == 1) {
+                    if (restart == 'y') {
+                        partOfProgram = 1;
                     } else {
                         partOfProgram = 7;
                     }
                 }
                 break;
+            case 7:
+                printWouldYouLikeToStartANewFarm();
+                restart = getUserInputChar();
+                if (checkUserInputChar(restart, partOfProgram) == 1) {
+                    if (restart == 'y') {
+                        partOfProgram = 0;
+                    } else {
+                        partOfProgram = 8;
+                    }
+                }
         }
-    } while (partOfProgram < 7);
+    } while (partOfProgram < 8);
 }
 
 int getTotalNumberOfPigs(int pigCapacity, int initialPopulation, int timeline,
-                         int doesUserWantTable, double growthRate) {
-    if (doesUserWantTable == 1) {
+                         char doesUserWantTable, double growthRate) {
+    if (doesUserWantTable == 'y') {
         cout << "Month      Population" << endl;
     }
+    int forPrinting;
     double bOld, bNew, pNew;
     double pOld = initialPopulation;
     for (int time = 0; time <= timeline; time++) {
-        if (doesUserWantTable == 1) {
-            printf("%-11d%f\n", time, pOld);
+        if (doesUserWantTable == 'y') {
+            forPrinting = pOld;
+            printf("%-11d%d\n", time, forPrinting);
         }
-        bOld = pOld / pigCapacity;
-        bNew = bOld + growthRate * bOld * (1 - bOld);
-        pNew = round(bNew * pigCapacity);
-        pOld = pNew;
+        if (time != timeline) {
+            bOld = pOld / pigCapacity;
+            bNew = bOld + growthRate * bOld * (1 - bOld);
+            pNew = round(bNew * pigCapacity);
+            pOld = pNew;
+        }
     }
     return pNew;
+}
+
+char checkUserInputChar(char data, int partOfProgram) {
+    switch (partOfProgram) {
+        case 5:
+        case 6:
+        case 7:
+            if (data != 'y' && data != 'n') {
+                return 0;
+            }
+            return 1;
+    }
 }
 
 int checkUserInputInt(int data, int partOfProgram) {
@@ -188,6 +211,12 @@ int checkUserInputDouble(double data) {
         return 0;
     }
     return 1;
+}
+
+char getUserInputChar() {
+    char choice;
+    cin >> choice;
+    return choice;
 }
 
 int getUserInputInt() {
@@ -220,12 +249,12 @@ void printEnterInitialPopulation() {
 
 void printEnterPigBirthRate() {
     cout << "Please Enter your farms pig birth rate\n"
-            "from 0% - 100%\n" << endl;
+            "from 0% - 100% " << "(0) (93) (100)\n" << endl;
 }
 
 void printEnterPigDeathRate() {
     cout << "Please Enter your farms pig death rate\n"
-            "from 0% - 100%\n" << endl;
+            "from 0% - 100% Ex:" << "(0) (93) (100)\n" << endl;
 }
 
 void printEnterTimeLine() {
@@ -234,18 +263,18 @@ void printEnterTimeLine() {
 
 void printWouldYouLikeATable() {
     cout << "Would you Like a Table or just the answer?\n"
-            "Enter (1 for TABLE) (0 for ANSWER)" << endl;
+            "Enter ('y' for TABLE) ('n' for ANSWER)" << endl;
 }
 
 void printWouldYouLikeToAnswerTheQuestionsAgain() {
     cout << "Would you Like to answer the Questions again\n"
             "Except this time with the same carrying Capacity?\n"
-            "Enter (1 for Yes) (0 to Continue)" << endl;
+            "Enter (y for Yes) (n to Continue)" << endl;
 }
 
 void printWouldYouLikeToStartANewFarm() {
     cout << "Would you Like to start A new Farm\n"
-            "Enter (1 to RESTART) (0 to EXIT)" << endl;
+            "Enter (y to RESTART) (n to EXIT)" << endl;
 }
 
 void printGoodBye() {

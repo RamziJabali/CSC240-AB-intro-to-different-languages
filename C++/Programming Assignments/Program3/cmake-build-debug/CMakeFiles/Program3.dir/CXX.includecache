@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Program3/Program3.cpp
+/Users/ramzijabali/Code/CSC240-AB-intro-to-different-languages/C++/Programming Assignments/Program3/Program3.cpp
 iostream
+-
+math.h
 -
 
